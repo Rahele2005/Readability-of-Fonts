@@ -1,0 +1,4 @@
+/.quarto/
+data/*
+my-report_files
+venv

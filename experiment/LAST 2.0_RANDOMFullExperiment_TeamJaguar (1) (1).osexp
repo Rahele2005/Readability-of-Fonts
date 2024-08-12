@@ -1,0 +1,980 @@
+---
+API: 3
+OpenSesame: 4.0.13
+Platform: nt
+---
+set width 1920
+set title ReadibilityOfFonts
+set subject_parity even
+set subject_nr 0
+set start experiment
+set sound_sample_size -16
+set sound_freq 48000
+set sound_channels 2
+set sound_buf_size 1024
+set sampler_backend legacy
+set round_decimals 2
+set mouse_backend legacy
+set keyboard_backend legacy
+set height 1080
+set fullscreen no
+set form_clicks no
+set foreground white
+set font_underline no
+set font_size 18
+set font_italic False
+set font_family mono
+set font_bold False
+set experiment_path "C:\\Users\\yarbus\\Desktop\\Team Jaguar"
+set disable_garbage_collection False
+set description "The main experiment item"
+set color_backend legacy
+set clock_backend legacy
+set canvas_backend legacy
+set background black
+
+define sequence CaseSequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run lowercase_loop False
+	run lowercase_loop1 False
+	run lowercase_questions_introduction False
+	run comprehension_questions_loop_lowercase False
+	run comprehension_questions_loop_lowercase1 False
+	run exit_sketchpad False
+	run uppercase_loop False
+	run uppercase_loop1 False
+	run uppercase_questions_introduction False
+	run comprehension_questions_loop_uppercase False
+	run comprehension_questions_loop_uppercase1 False
+
+define inline_script SequenceController
+	set description "Executes Python code"
+	___run__
+	import random
+	case_order = random.choice ([0, 1])
+	
+	var.case_order=case_order
+	print("Case order ...",var.case_order)
+	if var.case_order == 1:
+	   no=random.choice([0,1])
+	   if no==1:
+	       exp.items['lowercase_loop'].run()
+	       exp.items['lowercase_questions_introduction'].run()
+	       exp.items['comprehension_questions_loop_lowercase'].run()
+	       exp.items['exit_sketchpad'].run()
+	       exp.items['uppercase_loop'].run()
+	       exp.items['uppercase_questions_introduction'].run()
+	       exp.items['comprehension_questions_loop_uppercase'].run()
+	   else:
+	       exp.items['lowercase_loop1'].run()
+	       exp.items['lowercase_questions_introduction'].run()
+	       exp.items['comprehension_questions_loop_lowercase1'].run()
+	       exp.items['exit_sketchpad'].run()
+	       exp.items['uppercase_loop1'].run()
+	       exp.items['uppercase_questions_introduction'].run()
+	       exp.items['comprehension_questions_loop_uppercase1'].run()
+	   
+	   
+	  
+	else:
+	    no=random.choice([0,1])
+	    if no==1:
+	        exp.items['uppercase_loop'].run()
+	        exp.items['uppercase_questions_introduction'].run()
+	        exp.items['comprehension_questions_loop_uppercase'].run()
+	        exp.items['exit_sketchpad'].run()
+	        exp.items['lowercase_loop'].run()
+	        exp.items['lowercase_questions_introduction'].run()
+	        exp.items['comprehension_questions_loop_lowercase'].run()
+	    else:
+	        exp.items['uppercase_loop1'].run()
+	        exp.items['uppercase_questions_introduction'].run()
+	        exp.items['comprehension_questions_loop_uppercase1'].run()
+	        exp.items['exit_sketchpad'].run()
+	        exp.items['lowercase_loop1'].run()
+	        exp.items['lowercase_questions_introduction'].run()
+	        exp.items['comprehension_questions_loop_lowercase1'].run()
+	        
+	    
+	__end__
+	set _prepare ""
+
+define logger case_logger
+	set description "Logs experimental data"
+	set auto_log yes
+	log up
+	log down
+
+define loop comprehension_questions_loop_lowercase
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 2
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 question "did sarah go  hicking over the weekend?"
+	setcycle 1 question "did Alex ever go hicking on that trail?"
+	run questions_sequence_lowercase
+
+define loop comprehension_questions_loop_lowercase1
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 2
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 question "was the part of the book Lisa enjoyed the most the beginning?"
+	setcycle 1 question "did John  like the book´s ending?"
+	run questions_sequence_lowercase1
+
+define loop comprehension_questions_loop_uppercase
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 2
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 QUESTION "was the part of the book Lisa enjoyed the most the beginning?"
+	setcycle 1 QUESTION "did John  like the book´s ending?"
+	run questions_sequence_uppercase
+
+define loop comprehension_questions_loop_uppercase1
+	set source_file ""
+	set source table
+	set repeat 1
+	set order random
+	set description "Repeatedly runs another item"
+	set cycles 2
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 QUESTION "did sarah go  hicking over the weekend?"
+	setcycle 1 QUESTION "did Alex ever go hicking on that trail?"
+	run questions_sequence_uppercase1
+
+define sketchpad exit
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="Thank you!!<br /><br />" x=0 y=64 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="(press any key to exit)" x=0 y=736 z_index=0
+
+define sketchpad exit_sketchpad
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=True text="Great!<br /><br />Now we have the second dialougue.<br /><br />Enjoy!" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="(Press any key to start)" x=0 y=704 z_index=0
+
+define sequence experiment
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run welcome True
+	run eyetracker_calibration True
+	run explenation True
+	run SequenceController True
+	run CaseSequence True
+	run exit True
+
+define sketchpad explenation
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=True text="You're about to read a dialogue beween two people.<br /><br />Here's what you have to do: <br /><br />Firstly, you have to look at the dot; after that, just read the sentence. <br />When you're done, press space to move on to the next. <br /><br />Once you read the entire dialogue, <br />we're going to ask you some questions that you have to answer with a YES or NO.<br /><br />Enjoy!" x=0 y=0 z_index=0
+
+define pygaze_init eyetracker_calibration
+	set tracker_type OpenGaze
+	set tobiiglasses_udpport 49152
+	set tobiiglasses_address "192.168.71.50"
+	set smi_send_port 4444
+	set smi_recv_port 5555
+	set smi_ip "127.0.0.1"
+	set sacc_vel_thr 35
+	set sacc_acc_thr 9500
+	set eyelink_pupil_size_mode area
+	set eyelink_force_drift_correct yes
+	set description "Initializes and calibrates the eye tracker"
+	set calibrate yes
+	set calbeep yes
+	set alea_api_key "Contact Alea for an API key"
+	set alea_animated_calibration no
+	set _logfile automatic
+
+define inline_script fixation_detection_script_lowercase_left
+	set description "Executes Python code"
+	___run__
+	import math
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the left center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	left_centre = (screen_width / 4, screen_height / 2)  # Left center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x,y) sample from the tracker
+	    gazepos = eyetracker.sample()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the left center
+	    d = math.sqrt((gazepos[0] - left_centre[0])**2 + (gazepos[1] - left_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10000:  # 10 seconds
+	        break
+	   
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_lowercase_left1
+	set description "Executes Python code"
+	___run__
+	import math
+	import time  # Assuming you are using the time module for clock
+	
+	# Initialize the eyetracker (assuming you have the necessary setup)
+	# Replace this with the actual initialization code for your eye tracker
+	# eyetracker = ...
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the left center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	left_centre = (screen_width / 4, screen_height / 2)  # Left center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x,y) sample from the tracker
+	    gazepos = eyetracker.sample()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the left center
+	    d = math.sqrt((gazepos[0] - left_centre[0])**2 + (gazepos[1] - left_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	   
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_lowercase_right
+	set description "Executes Python code"
+	___run__
+	import math
+	import time
+	
+	# Function to get the gaze position from the eye-tracker
+	def get_gaze_position():
+	    # Replace with the actual method to get the current gaze position from your eye-tracker
+	    return eyetracker.sample()
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the right center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	right_centre = (3 * screen_width / 4, screen_height / 2)  # Right center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x, y) sample from the tracker
+	    gazepos = get_gaze_position()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the right center
+	    d = math.sqrt((gazepos[0] - right_centre[0])**2 + (gazepos[1] - right_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	    
+	   
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_lowercase_right1
+	set description "Executes Python code"
+	___run__
+	import math
+	import time
+	
+	# Function to get the gaze position from the eye-tracker
+	def get_gaze_position():
+	    # Replace with the actual method to get the current gaze position from your eye-tracker
+	    return eyetracker.sample()
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the right center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	right_centre = (3 * screen_width / 4, screen_height / 2)  # Right center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x, y) sample from the tracker
+	    gazepos = get_gaze_position()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the right center
+	    d = math.sqrt((gazepos[0] - right_centre[0])**2 + (gazepos[1] - right_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_uppercase_left
+	set description "Executes Python code"
+	___run__
+	import math
+	import time  # Assuming you are using the time module for clock
+	
+	# Initialize the eyetracker (assuming you have the necessary setup)
+	# Replace this with the actual initialization code for your eye tracker
+	# eyetracker = ...
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the left center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	left_centre = (screen_width / 4, screen_height / 2)  # Left center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x,y) sample from the tracker
+	    gazepos = eyetracker.sample()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the left center
+	    d = math.sqrt((gazepos[0] - left_centre[0])**2 + (gazepos[1] - left_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	   
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_uppercase_left1
+	set description "Executes Python code"
+	___run__
+	import math
+	import time  # Assuming you are using the time module for clock
+	
+	# Initialize the eyetracker (assuming you have the necessary setup)
+	# Replace this with the actual initialization code for your eye tracker
+	# eyetracker = ...
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the left center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	left_centre = (screen_width / 4, screen_height / 2)  # Left center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x,y) sample from the tracker
+	    gazepos = eyetracker.sample()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the left center
+	    d = math.sqrt((gazepos[0] - left_centre[0])**2 + (gazepos[1] - left_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	   
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_uppercase_right
+	set description "Executes Python code"
+	___run__
+	import math
+	import time
+	
+	# Function to get the gaze position from the eye-tracker
+	def get_gaze_position():
+	    # Replace with the actual method to get the current gaze position from your eye-tracker
+	    return eyetracker.sample()
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the right center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	right_centre = (3 * screen_width / 4, screen_height / 2)  # Right center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x, y) sample from the tracker
+	    gazepos = get_gaze_position()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the right center
+	    d = math.sqrt((gazepos[0] - right_centre[0])**2 + (gazepos[1] - right_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	__end__
+	set _prepare ""
+
+define inline_script fixation_detection_script_uppercase_right1
+	set description "Executes Python code"
+	___run__
+	import math
+	import time
+	
+	# Function to get the gaze position from the eye-tracker
+	def get_gaze_position():
+	    # Replace with the actual method to get the current gaze position from your eye-tracker
+	    return eyetracker.sample()
+	
+	# Get the start time
+	t0 = time.time()
+	
+	# Compute the right center coordinates
+	screen_width = 1920
+	screen_height = 1080
+	right_centre = (3 * screen_width / 4, screen_height / 2)  # Right center of the screen
+	
+	central_fixation = False
+	while not central_fixation:
+	    # Get a current (x, y) sample from the tracker
+	    gazepos = get_gaze_position()  # Replace with the actual method to get gaze position
+	
+	    # Check distance between the sample and the right center
+	    d = math.sqrt((gazepos[0] - right_centre[0])**2 + (gazepos[1] - right_centre[1])**2)
+	    
+	    # Check if distance is "small enough"
+	    if d < 100:    
+	        central_fixation = True
+	        
+	    # Check for a timeout (10 seconds)
+	    if time.time() - t0 > 10:  # 10 seconds
+	        break
+	__end__
+	set _prepare ""
+
+define sketchpad fixation_dot_lowecase_right
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=800 y=0 z_index=0
+
+define sketchpad fixation_dot_lowercase_left
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=-800 y=0 z_index=0
+
+define sketchpad fixation_dot_lowercase_left1
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=-800 y=0 z_index=0
+
+define sketchpad fixation_dot_lowercase_right1
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=800 y=0 z_index=0
+
+define sketchpad fixation_dot_uppercase_left
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=-800 y=0 z_index=0
+
+define sketchpad fixation_dot_uppercase_left1
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=-800 y=0 z_index=0
+
+define sketchpad fixation_dot_uppercase_right
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=800 y=0 z_index=0
+
+define sketchpad fixation_dot_uppercase_right1
+	set duration 0
+	set description "Displays stimuli"
+	draw fixdot color=white show_if=True style=default x=800 y=0 z_index=0
+
+define sequence lowercase1_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run pygaze_start_recording True
+	run pygaze_log_lowercase_fixation1 True
+	run fixation_dot_lowercase_left1 True
+	run fixation_detection_script_lowercase_left1 True
+	run pygaze_log_lowercase1 True
+	run lowercase_sentences1 True
+	run fixation_dot_lowercase_right1 True
+	run fixation_detection_script_lowercase_right1 True
+	run pygaze_log_lowercase2_1 True
+	run case_logger True
+	run pygaze_stop_lowercase1 True
+
+define inline_script lowercase_Q_inline_script
+	set description "Executes Python code"
+	___run__
+	# Import necessary modules
+	from openexp.keyboard import keyboard
+	
+	# Create a keyboard object
+	kb = keyboard(exp)
+	
+	# Wait for a response
+	response, _ = kb.get_key(keylist=['up', 'down'])
+	
+	# Save the response to a variable
+	var.participant_response = response
+	__end__
+	set _prepare ""
+
+define inline_script lowercase_Q_inline_script1
+	set description "Executes Python code"
+	___run__
+	# Import necessary modules
+	from openexp.keyboard import keyboard
+	
+	# Create a keyboard object
+	kb = keyboard(exp)
+	
+	# Wait for a response
+	response, _ = kb.get_key(keylist=['up', 'down'])
+	
+	# Save the response to a variable
+	var.participant_response = response
+	__end__
+	set _prepare ""
+
+define loop lowercase_loop
+	set source_file ""
+	set source table
+	set repeat 1
+	set order sequential
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if False
+	setcycle 0 sentence "hi, sarah! how was your weekend? what did you do? "
+	setcycle 1 sentence "good! how was your weekend? did you hike with friends?"
+	setcycle 2 sentence "yes, we went to the nearby mountain trail. and you?"
+	setcycle 3 sentence "i have been wanting to go there some time soon."
+	setcycle 4 sentence "you should go there. it is a really nice trail."
+	run lowercase_sequence
+
+define loop lowercase_loop1
+	set source_file ""
+	set source table
+	set repeat 1
+	set order sequential
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if False
+	setcycle 0 sentence "hey, lisa! did you finish the book i lent you?   "
+	setcycle 1 sentence "hi, john! yes, i did it. it was really amazing! "
+	setcycle 2 sentence "i'm glad you liked it. what was your favourite part?   "
+	setcycle 3 sentence "i loved the ending scene but it was so unexpected! "
+	setcycle 4 sentence "that twist at the end scenario was brilliant, wasn't it? "
+	run lowercase1_sequence
+
+define sketchpad lowercase_questions_introduction
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=True text="Well Done! <br /><br />Now we're going to ask you a couple of questions. <br />Press ↑ to respond YES and ↓ to respond NO. <br /><br />Good Luck!" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="(Press any key to start)" x=0 y=704 z_index=0
+
+define sketchpad lowercase_sentences
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=WHITE font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[sentence]" x=0 y=0 z_index=0
+	draw textline center=1 color=BLACK font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="" x=-64 y=0 z_index=0
+
+define sketchpad lowercase_sentences1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=WHITE font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[sentence]" x=0 y=0 z_index=0
+	draw textline center=1 color=BLACK font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="" x=-64 y=0 z_index=0
+
+define sequence lowercase_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run pygaze_start_lowercase True
+	run pygaze_log_lowercase_fixation True
+	run fixation_dot_lowercase_left True
+	run fixation_detection_script_lowercase_left True
+	run pygaze_log_lowercase True
+	run lowercase_sentences True
+	run fixation_dot_lowecase_right True
+	run fixation_detection_script_lowercase_right True
+	run pygaze_log_lowercase2 True
+	run case_logger True
+	run pygaze_stop_lowercase True
+
+define pygaze_log pygaze_log_lowercase
+	set throttle 2
+	__msg__
+	sentence_lowercase_onset
+	__end__
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_lowercase1
+	set throttle 2
+	__msg__
+	sentence_lowercase_onset
+	__end__
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_lowercase2
+	set throttle 2
+	set msg sentence_lowercase_offset_weekend
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_lowercase2_1
+	set throttle 2
+	set msg sentence_lowercase_offset_books
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_lowercase_fixation
+	set throttle 2
+	set msg fixation_screen_onset_weekend
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_lowercase_fixation1
+	set throttle 2
+	set msg fixation_screen_onset_books
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase
+	set throttle 2
+	set msg sentence_uppercase_onset
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase1
+	set throttle 2
+	set msg sentence_uppercase_onset
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase2
+	set throttle 2
+	set msg sentence_uppercase_offset_books
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase2_1
+	set throttle 2
+	set msg sentence_uppercase_offset_weekend
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase_fixation
+	set throttle 2
+	__msg__
+	fixation_screen_onset_books
+	__end__
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_log pygaze_log_uppercase_fixation1
+	set throttle 2
+	__msg__
+	fixation_screen_onset_weekend
+	__end__
+	set description "Writes information to the eye-tracker logfile"
+	set auto_log no
+
+define pygaze_start_recording pygaze_start_lowercase
+	set status_msg lowercase_dialogue_start
+	set description "Puts the eye tracker out of recording mode"
+
+define pygaze_start_recording pygaze_start_recording
+	set status_msg lowercase_dialogue_start
+	set description "Puts the eye tracker out of recording mode"
+
+define pygaze_start_recording pygaze_start_uppercase
+	set status_msg uppercase_dialogue_start
+	set description "Puts the eye tracker out of recording mode"
+
+define pygaze_start_recording pygaze_start_uppercase1
+	set status_msg uppercase_dialogue_start
+	set description "Puts the eye tracker out of recording mode"
+
+define pygaze_stop_recording pygaze_stop_lowercase
+	set status_msg lowecase_dialogue_end
+	set description ""
+
+define pygaze_stop_recording pygaze_stop_lowercase1
+	set status_msg lowecase_dialogue_end
+	set description ""
+
+define pygaze_stop_recording pygaze_stop_uppercase
+	set status_msg uppercase_dialogue_end
+	set description ""
+
+define pygaze_stop_recording pygaze_stop_uppercase1
+	set status_msg uppercase_dialogue_end
+	set description ""
+
+define keyboard_response questions_keyboard_response_lowercase
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response up
+	set allowed_responses "up;down"
+
+define keyboard_response questions_keyboard_response_lowercase1
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response down
+	set allowed_responses "up;down"
+
+define keyboard_response questions_keyboard_response_uppercase
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response up
+	set allowed_responses "up;down"
+
+define keyboard_response questions_keyboard_response_uppercase1
+	set timeout infinite
+	set flush yes
+	set event_type keypress
+	set duration keypress
+	set description "Collects keyboard responses"
+	set correct_response down
+	set allowed_responses "up;down"
+
+define sketchpad questions_lowercase
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[question]" x=0 y=0 z_index=0
+
+define sketchpad questions_lowercase1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[question]" x=0 y=0 z_index=0
+
+define sequence questions_sequence_lowercase
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run questions_lowercase True
+	run lowercase_Q_inline_script True
+	run questions_keyboard_response_lowercase True
+	run case_logger True
+
+define sequence questions_sequence_lowercase1
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run questions_lowercase1 True
+	run lowercase_Q_inline_script1 True
+	run questions_keyboard_response_lowercase1 True
+	run case_logger True
+
+define sequence questions_sequence_uppercase
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run questions_uppercase True
+	run uppercase_Q_inline_script True
+	run questions_keyboard_response_uppercase True
+	run case_logger True
+
+define sequence questions_sequence_uppercase1
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run questions_uppercase1 True
+	run uppercase_Q_inline_script1 True
+	run questions_keyboard_response_uppercase1 True
+	run case_logger True
+
+define sketchpad questions_uppercase
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[QUESTION]" x=0 y=0 z_index=0
+
+define sketchpad questions_uppercase1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[QUESTION]" x=0 y=0 z_index=0
+
+define sequence upparcase_sequence_1
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run pygaze_start_uppercase1 True
+	run pygaze_log_uppercase_fixation1 True
+	run fixation_dot_uppercase_left1 True
+	run fixation_detection_script_uppercase_left1 True
+	run pygaze_log_uppercase1 True
+	run uppercase_sentences1 True
+	run fixation_dot_uppercase_right1 True
+	run fixation_detection_script_uppercase_right1 True
+	run pygaze_log_uppercase2_1 True
+	run case_logger True
+	run pygaze_stop_uppercase1 True
+
+define inline_script uppercase_Q_inline_script
+	set description "Executes Python code"
+	___run__
+	# Import necessary modules
+	from openexp.keyboard import keyboard
+	
+	# Create a keyboard object
+	kb = keyboard(exp)
+	
+	# Wait for a response
+	response, _ = kb.get_key(keylist=['up', 'down'])
+	
+	# Save the response to a variable
+	var.participant_response = response
+	__end__
+	set _prepare ""
+
+define inline_script uppercase_Q_inline_script1
+	set description "Executes Python code"
+	___run__
+	# Import necessary modules
+	from openexp.keyboard import keyboard
+	
+	# Create a keyboard object
+	kb = keyboard(exp)
+	
+	# Wait for a response
+	response, _ = kb.get_key(keylist=['up', 'down'])
+	
+	# Save the response to a variable
+	var.participant_response = response
+	__end__
+	set _prepare ""
+
+define loop uppercase_loop
+	set source_file ""
+	set source table
+	set repeat 1
+	set order sequential
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 SENTENCE "HEY, LISA! DID YOU FINISH THE BOOK I LENT YOU?   "
+	setcycle 1 SENTENCE "HI, JOHN! YES, I DID IT. IT WAS REALLY AMAZING!   "
+	setcycle 2 SENTENCE "I'M GLAD YOU LIKED IT. WHAT WAS YOUR FAVOURITE PART?   "
+	setcycle 3 SENTENCE "I LOVED THE ENDING SCENE BUT IT WAS SO UNEXPECTED!   "
+	setcycle 4 SENTENCE "THAT TWIST AT THE END SCENARIO WAS BRILLIANT, WASN'T IT?"
+	run uppercase_sequence
+
+define loop uppercase_loop1
+	set source_file ""
+	set source table
+	set repeat 1
+	set order sequential
+	set description "Repeatedly runs another item"
+	set cycles 5
+	set continuous no
+	set break_if_on_first yes
+	set break_if never
+	setcycle 0 SENTENCE "HI, SARAH! HOW WAS YOUR WEEKEND? WHAT DID YOU DO?"
+	setcycle 1 SENTENCE "GOOD! HOW WAS YOUR WEEKEND? DID YOU HIKE WITH YOUR FRIENDS?"
+	setcycle 2 SENTENCE "YES, WE WENT TO THE NEARBY MOUNTAIN TRAIL. AND YOU?"
+	setcycle 3 SENTENCE "I HAVE BEEN WANTING TO GO THERE SOME TIME SOON."
+	setcycle 4 SENTENCE "YOU SHOULD GO THERE. IT IS A REALLY NICE TRAIL."
+	run upparcase_sequence_1
+
+define sketchpad uppercase_questions_introduction
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=True text="Well Done! <br /><br />Now we're going to ask you a couple of questions. <br />Press ↑ to respond YES and ↓ to respond NO. <br /><br />Good Luck!" x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="(Press any key to start)" x=0 y=704 z_index=0
+
+define sketchpad uppercase_sentences
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=WHITE font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[SENTENCE]" x=0 y=0 z_index=0
+
+define sketchpad uppercase_sentences1
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=WHITE font_bold=no font_family=mono font_italic=no font_size=32 html=yes show_if=True text="[SENTENCE]" x=0 y=0 z_index=0
+
+define sequence uppercase_sequence
+	set flush_keyboard yes
+	set description "Runs a number of items in sequence"
+	run pygaze_start_uppercase True
+	run pygaze_log_uppercase_fixation True
+	run fixation_dot_uppercase_left True
+	run fixation_detection_script_uppercase_left True
+	run pygaze_log_uppercase True
+	run uppercase_sentences True
+	run fixation_dot_uppercase_right True
+	run fixation_detection_script_uppercase_right True
+	run pygaze_log_uppercase2 True
+	run case_logger True
+	run pygaze_stop_uppercase True
+
+define sketchpad welcome
+	set start_response_interval no
+	set reset_variables no
+	set duration keypress
+	set description "Displays stimuli"
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=32 html=yes show_if=True text="Hello! Thanks for participating in this experiment! " x=0 y=0 z_index=0
+	draw textline center=1 color=white font_bold=no font_family=serif font_italic=no font_size=50 html=yes show_if=True text="(press any key to start)" x=0 y=704 z_index=0
+
