@@ -593,13 +593,13 @@ By confirming these findings, our study contributes to the ongoing discourse on 
 |------------------------------------------|:----------:|:---------:|:---------:|
 | Background Literature                    |      o     |     x     |     o     |
 | Experiment Design                        |      x     |     o     |     x     |
-| Stimulus Design                          |      x     |     x     |     o     |
+| Stimulus Design                          |      x     |     x     |     x     |
 | Piloting                                 |      x     |     x     |     x     |
 | Data-Recording                           |      x     |     x     |     x     |
 | Non-Final-Talk presenting (who talks)    |      x     |     o     |     o     |
 | Non-Final-Talk presenting (who prepares) |      x     |     o     |     o     |
 | Final-Talk Presenting (who talks)        |      x     |     x     |     x     |
-| Final-Talk Presenting (who prepares)     |      x     |     o     |     o     |
+| Final-Talk Presenting (who prepares)     |      x     |     o     |     x     |
 | Data Analysis Scripts                    |      x     |     o     |     x     |
 | Report Writing                           |      o     |     x     |     o     |
 
