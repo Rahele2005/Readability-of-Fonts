@@ -364,8 +364,7 @@ The fewer but longer fixations, up to 6 seconds for Subject 2 and up to 5 second
 
 
 ### Number of Fixations: 
-* Number of fixations: The total number of times a participant’s gaze fixates on different locations within the text. 
-For Subject 2, the total number of fixations recorded during the reading tasks is the sum of all individual fixations observed. Similarly, for Subject 6, the total number of fixations is the sum of all fixations noted during their reading tasks. In terms of short fixations, which are defined as lasting from 0 to 1 second, Subject 2's data includes the count of all such fixations within this time range. Subject 6's data also includes the number of fixations within the 0 to 1-second range. Regarding longer fixations, defined as those lasting over 1 second, Subject 2 has fixations recorded that fall within the range of over 1 second, up to 6 seconds. On the other hand, Subject 6 has longer fixations counted within the range of over 1 second, but only up to 5 seconds. 
+The total number of fixations refers to the total number of times a participant’s gaze is fixed on various locations within the text. To illustrate this analysis, we'll refer to Figure 12. For Subject 2 (Fig. 12), the total number of fixations recorded during the reading tasks is the sum of all individual fixations observed. Similarly, for Subject 6 (Fig. 12), the total number of fixations is the sum of all fixations noted during their reading tasks. Both histograms indicate a high frequency of short fixations (0 - 0.5 seconds) and fewer longer fixations. Regarding longer fixations, which are defined as those lasting over 1 second, Subject 2 has fixations recorded within the range of over 1 second, extending up to 6 seconds. In contrast, Subject 6 has longer fixations within the range of over 1 second, but only up to 5 seconds. Differences in the number of fixations between uppercase and lowercase text are minimal, suggesting that text case does not significantly impact reading behavior.
 
 
 
@@ -592,17 +591,17 @@ By confirming these findings, our study contributes to the ongoing discourse on 
 
 | **Task**                                 | **Sveva** | **Raheleh** | **Aishwarya** |
 |------------------------------------------|:----------:|:---------:|:---------:|
-| Background Literature                    |      o     |     o     |     x     |
-| Experiment Design                        |      o     |     o     |     o     |
-| Stimulus Design                          |      o     |     o     |     o     |
-| Piloting                                 |      o     |     x     |     o     |
-| Data-Recording                           |      o     |     x     |     o     |
-| Non-Final-Talk presenting (who talks)    |      o     |     x     |     x     |
-| Non-Final-Talk presenting (who prepares) |      o     |     x     |     x     |
-| Final-Talk Presenting (who talks)        |      o     |     o     |     o     |
-| Final-Talk Presenting (who prepares)     |      o     |     x     |     x     |
-| Data Analysis Scripts                    |      o     |     x     |     o     |
-| Report Writing                           |      x     |     o     |     x     |
+| Background Literature                    |      o     |     x     |     o     |
+| Experiment Design                        |      x     |     o     |     x     |
+| Stimulus Design                          |      x     |     x     |     o     |
+| Piloting                                 |      x     |     x     |     x     |
+| Data-Recording                           |      x     |     x     |     x     |
+| Non-Final-Talk presenting (who talks)    |      x     |     o     |     o     |
+| Non-Final-Talk presenting (who prepares) |      x     |     o     |     o     |
+| Final-Talk Presenting (who talks)        |      x     |     x     |     x     |
+| Final-Talk Presenting (who prepares)     |      x     |     o     |     o     |
+| Data Analysis Scripts                    |      x     |     o     |     x     |
+| Report Writing                           |      o     |     x     |     o     |
 
 : Contributions of each team member to the project
 
