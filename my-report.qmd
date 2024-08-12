@@ -520,7 +520,8 @@ The next step involved obtaining the coordinates of the actual bounding boxes. W
 
 The final step involved extrapolate from the data frame the coordinates of the very first fixation after the sentence onset (Figure 17). 
 
-![First FPOGX and FPOGY after sentence onset](plots/Find-fisrt-FPOGX-and-FPOGY.png)
+<img src="plots/Find-fisrt-FPOGX-and-FPOGY.png" alt="First FPOGX and FPOGY after sentence onset" style="height:800px;">
+
 
 
 This code was used to get FPOGX and FPOGY values for both uppercase and lowercase sentences. Finally, all the information gathered would be put together and used to plot the landing spot for uppercase and lowercase sentences. In the figure below we can see the final plot for one of our participants (Figure 18).
