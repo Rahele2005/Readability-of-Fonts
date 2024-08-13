@@ -520,7 +520,9 @@ The next step involved obtaining the coordinates of the actual bounding boxes. W
 
 The final step involved extrapolate from the data frame the coordinates of the very first fixation after the sentence onset (Figure 17). 
 
-<img src="plots/Find-fisrt-FPOGX-and-FPOGY.png" alt="First FPOGX and FPOGY after sentence onset" style="height:800px;">
+![First FPOGX and FPOGY after sentence onset](plots/Find-fisrt-FPOGX-and-FPOGY.png)
+
+
 
 
 
