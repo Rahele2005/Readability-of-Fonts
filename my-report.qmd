@@ -144,7 +144,7 @@ The GazePoint GP3 eye tracker requires accurate calibration for reliable data. C
 - Challenge: 
 The eye tracker calibration was a challenge as the participants were not able to calibrate with the eye tracker, due to many reasons like contact lenses, glasses, height of the participants, body posture, etc., during the experiment.
 
-- Solution: The number of participants were increased to more than 10 to ensure that we have atleast 9-10 participants with proper calibration and the experiment was run a few times before the participant starts.
+- Solution: The number of participants were increased to more than 10 to ensure that we have at least 9-10 participants with proper calibration and the experiment was run a few times before the participant starts.
 
 
 # Experiment
@@ -264,7 +264,7 @@ The stimuli needed to be randomized, in loops, and preprocessed before they coul
 ![Right fixation-dot script](plots/right-fixationdot-script.png)
 
     
-The functions are employed to detect the gaze before the sentence appears preventing any odds of outliers in fixations. Below are the images of how it looks like on Open Sesame:
+The functions are employed to detect the gaze before the sentence appears preventing any odds of outliers in fixations. Below are the images of how it looks like on Open Sesame (fig. 4,5,6):
 
 ::: {.row}
 ::: {.col}
@@ -319,7 +319,7 @@ The scatter plot below (Figure 11) illustrates this relationship for a single pa
 
 ![Subject 11 FPOGX vs FPOGY](plots/Sucject11FPOGXFPOGY.png)
 
-To accurately assess the participant's gaze behavior, we plotted the FPOGX. Since each FPOGX and FPOGY value in the dataset corresponds to a sample within a fixation rather than the fixation itself, we filtered the dataframe to retain only the final FPOGID for each fixation. Additionally, we filtered out negative values, as they might indicate that the participant was not looking directly at the screen.
+To accurately assess the participant's gaze behavior, we plotted the FPOGX and FPOGY. Since each FPOGX and FPOGY value in the dataset corresponds to a sample within a fixation rather than the fixation itself, we filtered the dataframe to retain only the final FPOGID for each fixation. Additionally, we filtered out negative values, as they might indicate that the participant was not looking directly at the screen.
 With these precautions, we observed that the majority of data points are tightly clustered around the 0.5 mark on the FPOGY axis. This suggests that the participant's gaze was primarily focused at the middle vertical position of the screen, as expected. However, there are several outlier points with significantly higher FPOGY values. Potential reasons for these high FPOGY values include:
 
 - Data Collection Artifacts: 
@@ -331,9 +331,9 @@ The participant may have looked away from the screen or at something outside the
 - Calibration Issues: 
 The eye-tracking system might not have been properly calibrated for this participant, resulting in inaccurate gaze position data.
 
-These sanity checks are a fundamental part of the experimental process, safeguarding the quality and validity of the research findings. Unfortunately, during this phase, 5 out of 12 participants had to be excluded from the experiment. For two participants, the lowercase onset log was not activated, and for one participant, no logs were recorded at all. Identifying the precise reasons for these issues requires a detailed review of the experimental setup, the protocols followed, and the raw data files.
+These sanity checks are a fundamental part of the experimental process, safeguarding the quality and validity of the research findings. Unfortunately, during this phase, 6 out of 12 participants had to be excluded from the experiment. For five participants, the lowercase onset log was not activated, and for one participant, no logs were recorded at all. Identifying the precise reasons for these issues requires a detailed review of the experimental setup, the protocols followed, and the raw data files.
 
-We believe that the issue with the one participant who had no logs recorded might have been due to data corruption, meaning the log files might have been corrupted during the recording or saving process. For the other two participants, we suspect they performed the experiment with an older version of the software where the logging settings might have been configured incorrectly, causing certain events not to be logged.
+We believe that the issue with the one participant who had no logs recorded might have been due to data corruption, meaning the log files might have been corrupted during the recording or saving process. For the other five participants, we suspect they performed the experiment with an older version of the software where the logging settings might have been configured incorrectly, causing certain events not to be logged.
 
 
 ## Analysis Pipeline
@@ -343,7 +343,7 @@ We evaluated three criteria to determine the readability of uppercase and lowerc
 As an illustration of our analysis procedure, we present the plots from two participants. However, these analyses were conducted for all individuals who participated in our experiment and whose data met the criteria established by our sanity checks.
 
 ### Fixation Duration: 
-* Fixation duration: The length of time a participant's gaze remains fixed on a single location. 
+Fixation duration is the length of time a participant's gaze remains fixed on a single location. 
 For Subject 2 (Figure 12), the average duration of all fixations is calculated to provide an overall measure of how long each fixation lasts on average. Similarly, for Subject 6 (Figure 12), the average duration of all fixations is determined in the same manner.Both Subject 2 and Subject 6 exhibit the highest frequency of fixations within the 0 to 0.5-second range, indicating that most of their fixations fall within this short duration. Regarding long fixations, Subject 2's fixation durations ranged up to 6 seconds, whereas Subject 6's fixation durations range up to 5 seconds.
 
 The interpretation of these findings is as follows:
@@ -508,17 +508,17 @@ The following paragraph explains the various steps that lead to the coordinates 
 
 ![Code for width and height](plots/find-bounding-boxes.png)
 
-First, it was essential to determine the width and height of each word in the sentence. The height of the words was established based on the font size used in OpenSesame’s sketchpad (32px). For the width, we used the following code (Figure 15), which was based on the fact that our stimuli were presented in a monospaced font. Once we added the sentence we wanted to analyze and the font’s heigh it would give us the width as a result. 
+First, it was essential to determine the width and height of each word in the sentence. The height of the words was established based on the font size used in OpenSesame’s sketchpad (32px). For the width, we used the following code (Figure 13), which was based on the fact that our stimuli were presented in a monospaced font. Once we added the sentence we wanted to analyze and the font’s heigh it would give us the width as a result. 
 
 
 
 
-The next step involved obtaining the coordinates of the actual bounding boxes. We achieved this using the `calculate_sentence_bounding_boxes` function, as shown in the code below (Figure 16). This function required the sentence, the font height, and the width of each word, which we had previously calculated using the methodology previously described. 
+The next step involved obtaining the coordinates of the actual bounding boxes. We achieved this using the `calculate_sentence_bounding_boxes` function, as shown in the code below (Figure 14). This function required the sentence, the font height, and the width of each word, which we had previously calculated using the methodology previously described. 
 
 ![Code for bounding boxes](plots/find-width-and-height.png)
 
 
-The final step involved extrapolate from the data frame the coordinates of the very first fixation after the sentence onset (Figure 17). 
+The final step involved extrapolate from the data frame the coordinates of the very first fixation after the sentence onset (Figure 15). 
 
 ![First FPOGX and FPOGY after sentence onset](plots/Find-fisrt-FPOGX-and-FPOGY.png)
 
@@ -535,7 +535,7 @@ This code was used to get FPOGX and FPOGY values for both uppercase and lowercas
 ### Observations
 
 For what concerns the number and duration of fixations the data showed that most fixations are under 1 second. Providing that there is no particular difficulty when reading either case types. Additional analysis on landing spot also confirmed this hypothesis showing that for both case types the landing spot, which was found on one word in each sentence, was on almost the same spot.
-The data gathered for number and duration of fixations and landing spot showed no big difference between the two case formats. Additionally, for reasons explained previousely not all participants' data could be analysed. Figures 13 and 14 reveal overall results for two of our participants in our experiment. The logs, however, are nor visible for all of them due to the defected data from the eye tracker. 
+The data gathered for number and duration of fixations and landing spot showed no big difference between the two case formats. Additionally, for reasons explained previousely not all participants' data could be analysed. Figures 16 and 17 reveal overall results for two of our participants in our experiment. The logs, however, are nor visible for all of them due to the defected data from the eye tracker. 
 
 ![Fixation Duration](plots/fixation-duration.png){ width=50% }
 
